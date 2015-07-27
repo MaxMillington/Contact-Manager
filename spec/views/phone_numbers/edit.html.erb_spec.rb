@@ -15,7 +15,7 @@ RSpec.describe "phone_numbers/edit", type: :view do
 
       assert_select "input#phone_number_number[name=?]", "phone_number[number]"
 
-      assert_select "input#phone_number_person_id[name=?]", "phone_number[person_id]"
+      assert_select "input#phone_number_contact_id[name=?]", "phone_number[contact_id]"
     end
   end
 end
