@@ -21,4 +21,13 @@ RSpec.describe PhoneNumber, type: :model do
     expect(phone_number).to respond_to(:person)
   end
 
+  # it 'must have reference to a company' do
+  #   phone_number.company_id = nil
+  #   expect(phone_number).not_to be_valid
+  # end
+  #
+  # it 'is associated with a company' do
+  #   expect(phone_number).to respond_to(:company)
+  # end
+
 end
