@@ -14,7 +14,8 @@ class EmailAddressesController < ApplicationController
 
   # GET /email_addresses/new
   def new
-    @email_address = EmailAddress.new(contact_id: params[:contact_id])
+    @email_address = EmailAddress.new(contact_id: params[:contact_id],
+                                      contact_type: params[:contact_type])
   end
 
   # GET /email_addresses/1/edit
@@ -24,8 +25,8 @@ class EmailAddressesController < ApplicationController
   # POST /email_addresses
   # POST /email_addresses.json
   def create
-    @email_address = EmailAddress.new(email_address_params)
 
+    @email_address = EmailAddress.new(email_address_params)
     respond_to do |format|
       if @email_address.save
         format.html { redirect_to @email_address.contact, notice: 'Email address was successfully created.' }
