@@ -1,6 +1,5 @@
 class EmailAddress < ActiveRecord::Base
-  belongs_to :person
-  belongs_to :company
+  belongs_to :contact, polymorphic: true
 
   validates :address, presence: true
   validates :person_id, presence: true
