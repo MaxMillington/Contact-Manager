@@ -51,6 +51,10 @@ RSpec.describe EmailAddressesController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+      let(:bob) { Person.create(first_name: "Bob", last_name: "Jones") }
+      let(:valid_attributes) { { address: "money@money.com",
+                                 person_id: bob.id } }
+
       it "creates a new EmailAddress" do
         expect {
           post :create, {:email_address => valid_attributes}, valid_session
@@ -84,15 +88,17 @@ RSpec.describe EmailAddressesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:bob) {Person.create(first_name: "Bob", last_name: "Jones")}
+      let(:valid_attributes) { {address: 'money@money.com', person_id: bob.id}}
+      let(:new_attributes) { {address: 'bob@money.com', person_id: bob.id} }
 
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
         put :update, {:id => email_address.to_param, :email_address => new_attributes}, valid_session
         email_address.reload
-        skip("Add assertions for updated state")
+
+        expect(email_address.address).to eq("bob@money.com")
+        expect(email_address.person_id).to eq(1)
       end
 
       it "assigns the requested email_address as @email_address" do
